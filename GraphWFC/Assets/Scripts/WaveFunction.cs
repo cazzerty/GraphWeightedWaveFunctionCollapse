@@ -42,6 +42,11 @@ public class WaveFunction : MonoBehaviour
                 gridCells.Add(newCell);
             }
         }
+
+        foreach (GridCell cell in gridCells)
+        {
+            cell.CollapseEntropy();
+        }
     }
 
     private bool ErrorCheck()

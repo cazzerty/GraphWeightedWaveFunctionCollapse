@@ -336,7 +336,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridDimensions: {x: 18, y: 10}
-  tileSet: []
+  tileSet:
+  - {fileID: 704674052370710029, guid: 81a45620e9b8b8941bc34cb86d9e4d1a, type: 3}
+  - {fileID: 704674052370710029, guid: f178b93350a46604fa84208503832a7a, type: 3}
   cellObject: {fileID: 4244285741663257689, guid: 22101d326b692c344afc75606f6ffc19, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

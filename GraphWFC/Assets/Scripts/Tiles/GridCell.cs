@@ -9,6 +9,7 @@ namespace Tiles
         [SerializeField] private List<GridTile> availableTiles = new List<GridTile>();
 
         [SerializeField] private double distanceToEdge;
+        private GridTile tile;
     
         public void CreateCellData(List<GridTile> tiles, bool collapsed)
         {
@@ -26,7 +27,12 @@ namespace Tiles
 
         public void CollapseEntropy()
         {
-        
+            int selector = 0;
+            if (distanceToEdge > 3)
+            {
+                selector = 1;}
+            tile = Instantiate(availableTiles[selector], transform.position, Quaternion.identity);
+            tile.transform.parent = this.transform;
         }
 
         public void SetTiles(List<GridTile> tiles)

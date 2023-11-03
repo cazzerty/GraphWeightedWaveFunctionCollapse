@@ -22,12 +22,8 @@ public class WaveFunction : MonoBehaviour
         if (_graphManager == null) { _graphManager = GetComponent<GraphManager>();}
         //if(ErrorCheck()){return;}
         InitialiseGrid();
-    }
+        CollapseCells();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void InitialiseGrid()
@@ -42,11 +38,32 @@ public class WaveFunction : MonoBehaviour
                 gridCells.Add(newCell);
             }
         }
+    }
 
-        foreach (GridCell cell in gridCells)
+    private void CollapseCells()
+    {
+        int index = 1;
+        while (index != -1)
         {
-            cell.CollapseEntropy();
+            index = GetLowestEntropyCellIndex();
+            if(index == -1){break;}
+            gridCells[index].CollapseEntropy();
         }
+    }
+
+    private int GetLowestEntropyCellIndex()
+    {
+        int lowestEntropyIndex = -1;
+        for(int i = 0; i < gridCells.Count; i++)
+        {
+            if(gridCells[i].GetCollapsed()){continue;} //Ignore if already collapsed
+
+            if (lowestEntropyIndex == -1) { lowestEntropyIndex = i; continue;} //Set first to lowest entropy index
+
+            if (gridCells[i].GetEntropy() < gridCells[lowestEntropyIndex].GetEntropy()) { lowestEntropyIndex = i; }
+        }
+
+        return lowestEntropyIndex;
     }
 
     private bool ErrorCheck()

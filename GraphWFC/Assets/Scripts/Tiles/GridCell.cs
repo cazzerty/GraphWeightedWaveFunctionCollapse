@@ -31,8 +31,12 @@ namespace Tiles
             if (distanceToEdge > 1)
             {
                 selector = 1;}
+
+            selector = Random.Range(0, 2);
+            
             tile = Instantiate(availableTiles[selector], transform.position, Quaternion.identity);
             tile.transform.parent = this.transform;
+            collapsed = true;
         }
 
         public void SetTiles(List<GridTile> tiles)
@@ -44,5 +48,7 @@ namespace Tiles
         {
             return availableTiles.Count;
         }
+
+        public bool GetCollapsed() { return collapsed; }
     }
 }

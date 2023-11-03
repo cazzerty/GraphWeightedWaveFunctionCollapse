@@ -29,7 +29,7 @@ public class GraphManager : MonoBehaviour
         AddVertex(1,new Vector3(10,3,0));
         AddVertex(1,new Vector3(10,6,0));
         AddVertex(1,new Vector3(12,6,0));
-        AddVertex(1,new Vector3(7,7,0));
+        AddVertex(1,new Vector3(3,2,0));
         AddVertex(1,new Vector3(15,8,0));
         AddEdge(1,0,1);
         AddEdge(1,1,2);

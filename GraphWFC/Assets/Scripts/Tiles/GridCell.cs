@@ -28,7 +28,7 @@ namespace Tiles
         public void CollapseEntropy()
         {
             int selector = 0;
-            if (distanceToEdge > 3)
+            if (distanceToEdge > 1)
             {
                 selector = 1;}
             tile = Instantiate(availableTiles[selector], transform.position, Quaternion.identity);

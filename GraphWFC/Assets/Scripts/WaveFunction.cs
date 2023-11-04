@@ -48,6 +48,8 @@ public class WaveFunction : MonoBehaviour
             index = GetLowestEntropyCellIndex();
             if(index == -1){break;}
             gridCells[index].CollapseEntropy();
+            UpdateEntropy(index);
+            
         }
     }
 
@@ -64,6 +66,22 @@ public class WaveFunction : MonoBehaviour
         }
 
         return lowestEntropyIndex;
+    }
+
+    private void UpdateEntropy(int centerIndex)
+    {
+        //up
+        int i = centerIndex - gridDimensions.x;
+        if( i > -1 && i < gridCells.Count){gridCells[i].ReducePossibleTilesByNeighbour(gridCells[centerIndex].GetAvailableNeighbours(0));}
+        //down
+        i = centerIndex + gridDimensions.x;
+        if( i > -1 && i < gridCells.Count){gridCells[i].ReducePossibleTilesByNeighbour(gridCells[centerIndex].GetAvailableNeighbours(1));}
+        //left
+        i = centerIndex - 1;
+        if( centerIndex % gridDimensions.x != 0){gridCells[i].ReducePossibleTilesByNeighbour(gridCells[centerIndex].GetAvailableNeighbours(2));}
+        //right
+        i = centerIndex + 1;
+        if( (centerIndex + 1) % gridDimensions.x != 0){gridCells[i].ReducePossibleTilesByNeighbour(gridCells[centerIndex].GetAvailableNeighbours(3));}
     }
 
     private bool ErrorCheck()

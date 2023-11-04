@@ -45,10 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c041da525a5fb4646b1e8421dde7207f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upNeighbours: []
-  downNeighbours: []
-  leftNeighbours: []
-  rightNeighbours: []
+  upNeighbours:
+  - {fileID: 704674052370710029}
+  - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
+  downNeighbours:
+  - {fileID: 704674052370710029}
+  - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
+  leftNeighbours:
+  - {fileID: 704674052370710029}
+  - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
+  rightNeighbours:
+  - {fileID: 704674052370710029}
+  - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
   weight: 1
   walkable: 0
   limit: 0

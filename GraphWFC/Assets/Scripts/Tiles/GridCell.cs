@@ -34,7 +34,7 @@ namespace Tiles
                 selector = 1;}
             
             //todo Weight probability by distance
-
+            Debug.Log(transform.position);
             selector = Random.Range(0, GetEntropy());
             
             tile = Instantiate(availableTiles[selector], transform.position, Quaternion.identity);
@@ -90,28 +90,21 @@ namespace Tiles
             //or return possible neighbours of current tile
             if (!collapsed)
             {
-                Debug.Log("FFFFF");
                 return new List<GridTile>();
             }
             switch (direction)
             {
                 case 0:
                     return tile.upNeighbours;
-                    break;
                 case 1:
                     return tile.downNeighbours;
-                    break;
                 case 2:
                     return tile.leftNeighbours;
-                    break;
                 case 3:
                     return tile.rightNeighbours;
-                    break;
-                
                 default:
                     Debug.LogError("INVALID DIR INPUT");
                     return new List<GridTile>();
-                    break;
             }
             
         }

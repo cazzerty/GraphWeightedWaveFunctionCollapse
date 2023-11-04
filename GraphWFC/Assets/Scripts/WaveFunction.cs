@@ -72,10 +72,10 @@ public class WaveFunction : MonoBehaviour
     {
         //up
         int i = centerIndex - gridDimensions.x;
-        if( i > -1 && i < gridCells.Count){gridCells[i].ReducePossibleTilesByNeighbour(gridCells[centerIndex].GetAvailableNeighbours(0));}
+        if( i > -1 && i < gridCells.Count){gridCells[i].ReducePossibleTilesByNeighbour(gridCells[centerIndex].GetAvailableNeighbours(1));}
         //down
         i = centerIndex + gridDimensions.x;
-        if( i > -1 && i < gridCells.Count){gridCells[i].ReducePossibleTilesByNeighbour(gridCells[centerIndex].GetAvailableNeighbours(1));}
+        if( i > -1 && i < gridCells.Count){gridCells[i].ReducePossibleTilesByNeighbour(gridCells[centerIndex].GetAvailableNeighbours(0));}
         //left
         i = centerIndex - 1;
         if( centerIndex % gridDimensions.x != 0){gridCells[i].ReducePossibleTilesByNeighbour(gridCells[centerIndex].GetAvailableNeighbours(2));}

@@ -34,13 +34,36 @@ namespace Tiles
                 selector = 1;}
             
             //todo Weight probability by distance
-            Debug.Log(transform.position);
-            selector = Random.Range(0, GetEntropy());
+            selector = WeightedRandomSelection();
+            
             
             tile = Instantiate(availableTiles[selector], transform.position, Quaternion.identity);
             availableTiles = new List<GridTile>();
             tile.transform.parent = this.transform;
             collapsed = true;
+        }
+
+        private int WeightedRandomSelection()
+        {
+            int ongoingCount = 0;
+            int[] probabilityArray = new int[availableTiles.Count];
+            for (int i = 0; i < availableTiles.Count; i++)
+            {
+                ongoingCount = ongoingCount + availableTiles[i].weight;
+                probabilityArray[i] = ongoingCount;
+                
+            }
+            int selector = Random.Range(0, ongoingCount);
+            for (int i = 0; i < probabilityArray.Length; i++)
+            {
+                if (selector < probabilityArray[i])
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+
         }
 
         public void SetPossibleTiles(List<GridTile> tiles)

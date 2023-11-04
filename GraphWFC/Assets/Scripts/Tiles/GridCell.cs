@@ -32,11 +32,8 @@ namespace Tiles
             if (distanceToEdge > 1)
             {
                 selector = 1;}
-
-            foreach (GridTile tile in availableTiles)
-            {
-                Debug.Log(transform.position + "_" + tile.name);
-            }
+            
+            //todo Weight probability by distance
 
             selector = Random.Range(0, GetEntropy());
             

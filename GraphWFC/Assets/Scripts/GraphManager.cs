@@ -26,6 +26,13 @@ public class GraphManager : MonoBehaviour
 
     public void CreateDebugGraph()
     {
+        Graph2();
+
+        end = _vertices.Count - 1;
+    }
+
+    private void Graph1()
+    {
         AddVertex(1,new Vector3(20,23,0));
         AddVertex(1,new Vector3(20,26,0));
         AddVertex(1,new Vector3(22,26,0));
@@ -35,8 +42,31 @@ public class GraphManager : MonoBehaviour
         AddEdge(1,1,2);
         AddEdge(1,1,3);
         AddEdge(1,2,4);
+    }
 
-        end = _vertices.Count - 1;
+    private void Graph2()
+    {
+        AddVertex(1,new Vector3(5,5,0)); //0
+        AddVertex(1,new Vector3(15,5,0)); //1
+        AddVertex(1,new Vector3(25,5,0)); //2
+        AddVertex(1,new Vector3(35,5,0)); //3
+        
+        AddVertex(1,new Vector3(5,15,0)); //4
+        AddVertex(1,new Vector3(15,15,0)); //5
+        AddVertex(1,new Vector3(35,15,0)); //6
+        AddVertex(1,new Vector3(45,15,0)); //7
+        
+        AddEdge(1,0,1);
+        AddEdge(1,1,2);
+        AddEdge(1,2,3);
+        
+        AddEdge(1,0,4);
+        AddEdge(1,1,5);
+        AddEdge(1,3,6);
+        
+        AddEdge(1,4,5);
+        AddEdge(1, 6, 7);
+
     }
 
     public void AddVertex(double weight, Vector3 worldPosition)

@@ -48,16 +48,20 @@ MonoBehaviour:
   upNeighbours:
   - {fileID: 704674052370710029}
   - {fileID: 704674052370710029, guid: 81a45620e9b8b8941bc34cb86d9e4d1a, type: 3}
+  - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
   downNeighbours:
   - {fileID: 704674052370710029}
   - {fileID: 704674052370710029, guid: 81a45620e9b8b8941bc34cb86d9e4d1a, type: 3}
+  - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
   leftNeighbours:
   - {fileID: 704674052370710029}
   - {fileID: 704674052370710029, guid: 81a45620e9b8b8941bc34cb86d9e4d1a, type: 3}
+  - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
   rightNeighbours:
   - {fileID: 704674052370710029}
   - {fileID: 704674052370710029, guid: 81a45620e9b8b8941bc34cb86d9e4d1a, type: 3}
-  weight: 1
+  - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
+  weight: 2
   walkable: 0
   limit: 0
 --- !u!212 &7010834073529722979

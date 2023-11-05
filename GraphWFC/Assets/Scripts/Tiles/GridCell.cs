@@ -12,7 +12,7 @@ namespace Tiles
         [SerializeField] private List<GridTile> availableTiles = new List<GridTile>();
 
         [SerializeField] public double distanceToEdge;
-        private GridTile tile;
+        public GridTile tile;
     
         public void CreateCellData(List<GridTile> tiles, bool collapsed)
         {
@@ -39,8 +39,9 @@ namespace Tiles
             //todo Weight probability by distance
             selector = WeightedRandomSelection();
             
-            
-            tile = Instantiate(availableTiles[selector], transform.position, Quaternion.identity);
+            Console.WriteLine(this.transform.position);
+
+            tile = Instantiate(availableTiles[selector], transform.position, Quaternion.identity); 
             availableTiles = new List<GridTile>();
             tile.transform.parent = this.transform;
             collapsed = true;
@@ -74,7 +75,7 @@ namespace Tiles
             if (gridTile.walkable)
             {
                 double weightedProb = System.Math.Pow(gridTile.weight, 4 - distanceToEdge);
-                Debug.Log(weightedProb);
+                //Debug.Log(weightedProb);
                 return (int)Math.Round(weightedProb);
             }
             return gridTile.weight;
@@ -122,6 +123,7 @@ namespace Tiles
         public int GetEntropy()
         {
             return availableTiles.Count;
+            return availableTiles.Count + ((int)distanceToEdge)/5;
         }
 
         /// <summary>

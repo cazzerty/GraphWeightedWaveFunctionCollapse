@@ -28,6 +28,8 @@ public class WaveFunction : MonoBehaviour
         InitialiseGrid();
         CollapseSetCells();
         CollapseCells();
+        
+        Debug.Log("IS VALID?: " + IsEndReachable());
 
     }
 
@@ -40,6 +42,8 @@ public class WaveFunction : MonoBehaviour
             ResetCells();
             CollapseSetCells();
             CollapseCells();
+            
+            Debug.Log("IS VALID?: " + IsEndReachable());
         }
     }
 
@@ -155,6 +159,95 @@ public class WaveFunction : MonoBehaviour
             return true;
         }
 
+        return false;
+    }
+
+    /// <summary>
+    /// This is a lazily implemented and cursed breadth first search. Horribly un-optimal but it technically works
+    /// Should be an a* implementation
+    /// Entirely my fault for the selected data structures
+    /// </summary>
+    /// <returns></returns>
+    private bool IsEndReachable()
+    {
+        List<int> visited = new List<int>();
+        Queue<GridCell> cellQueue = new Queue<GridCell>();
+        cellQueue.Enqueue(gridCells[GetClosestCellIndex(_graphManager.GetVertexWorldPosition(_graphManager.start))]);
+
+        GridCell endCell = gridCells[GetClosestCellIndex(_graphManager.GetVertexWorldPosition(_graphManager.end))];
+        int count = 0;
+        while (cellQueue.Count > 0)
+        {
+            count++;
+            if (count >= (gridDimensions.x * gridDimensions.y)) { cellQueue = new Queue<GridCell>();
+                break;
+            }
+            
+            if (cellQueue.Peek() == endCell) { return true; } //Is End?
+            
+            //Get current Index
+            int centerIndex = -1;
+            for (int i = 0; i < gridCells.Count; i++)
+            {
+                if (cellQueue.Peek().transform.position == gridCells[i].transform.position)
+                {
+                    centerIndex = i;
+                    break;
+                }
+            }
+
+            if (centerIndex < 0)
+            {
+                Debug.LogError("CELLNOTFOUND");
+                return false;
+            }
+
+            //Check Neighbour Cells to add
+            //up
+            int index = centerIndex - gridDimensions.x;
+            if( index > -1 && index < gridCells.Count){
+                if (gridCells[index].tile.walkable && (!visited.Contains(index)))
+                {
+                    visited.Add(index);
+                    if (gridCells[index] == endCell) { return true;}
+                    cellQueue.Enqueue(gridCells[index]);
+                }}
+            //down
+            index = centerIndex + gridDimensions.x;
+            if (index > -1 && index < gridCells.Count)
+            {
+                if (gridCells[index].tile.walkable && (!visited.Contains(index)))
+                {
+                    visited.Add(index);
+                    if (gridCells[index] == endCell) { return true;}
+                    cellQueue.Enqueue(gridCells[index]);
+                }
+            }
+            //left
+            index = centerIndex - 1;
+            if (centerIndex % gridDimensions.x != 0)
+            {
+                if (gridCells[index].tile.walkable && (!visited.Contains(index)))
+                {
+                    visited.Add(index);
+                    if (gridCells[index] == endCell) { return true;}
+                    cellQueue.Enqueue(gridCells[index]);
+                }
+            }
+            //right
+            index = centerIndex + 1;
+            if ((centerIndex + 1) % gridDimensions.x != 0)
+            {
+                if (gridCells[index].tile.walkable && (!visited.Contains(index)))
+                {
+                    visited.Add(index);
+                    if (gridCells[index] == endCell) { return true;}
+                    cellQueue.Enqueue(gridCells[index]);
+                }
+            }
+            visited.Add(centerIndex);
+            cellQueue.Dequeue();
+        }
         return false;
     }
 }

@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4160288238492417340}
   - component: {fileID: 704674052370710029}
   - component: {fileID: 7010834073529722979}
+  - component: {fileID: 3464025621840723539}
   m_Layer: 0
-  m_Name: TileTest 1
+  m_Name: DE_G_F
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,18 +48,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upNeighbours:
   - {fileID: 704674052370710029}
-  - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
+  - {fileID: 704674052370710029, guid: daef0f05a92a86545b16a498ab7c7d95, type: 3}
   downNeighbours:
   - {fileID: 704674052370710029}
-  - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
+  - {fileID: 704674052370710029, guid: 09cb0ab7c9f958b41a3c3e2aab6ae847, type: 3}
   leftNeighbours:
   - {fileID: 704674052370710029}
-  - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
+  - {fileID: 704674052370710029, guid: 09cb0ab7c9f958b41a3c3e2aab6ae847, type: 3}
+  - {fileID: 704674052370710029, guid: daef0f05a92a86545b16a498ab7c7d95, type: 3}
   rightNeighbours:
   - {fileID: 704674052370710029}
-  - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
-  weight: 5
-  walkable: 0
+  - {fileID: 704674052370710029, guid: 09cb0ab7c9f958b41a3c3e2aab6ae847, type: 3}
+  - {fileID: 704674052370710029, guid: daef0f05a92a86545b16a498ab7c7d95, type: 3}
+  weight: 10
+  walkable: 1
   limit: 0
 --- !u!212 &7010834073529722979
 SpriteRenderer:
@@ -101,7 +104,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 109570dd79fe5cb40ac696e978ce6bbf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8969b7adfb0dca47bc8b0f544911907, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -112,3 +115,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3464025621840723539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6863917733019123780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8413bbda1f020734fb552263d87e55fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 1cd20feff6b266c47bce2a004e401400, type: 3}
+  - {fileID: 21300000, guid: 384b188424b2aa14c9191c56b926637f, type: 3}
+  - {fileID: 21300000, guid: 384b188424b2aa14c9191c56b926637f, type: 3}
+  - {fileID: 21300000, guid: 8b4b82dae1c008a4e8d9437aaff5b998, type: 3}
+  - {fileID: 21300000, guid: c8f090eed9e716a489483aca14ccfe9b, type: 3}
+  - {fileID: 21300000, guid: 43b905ae8f0b6aa4ea0e0e8bead9de09, type: 3}
+  firstOffset: 1
+  spriteRenderer: {fileID: 7010834073529722979}

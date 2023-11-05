@@ -352,25 +352,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridDimensions: {x: 50, y: 50}
   tileSet:
-  - {fileID: 704674052370710029, guid: 69ec538d61fbfa14fb107576c121900a, type: 3}
-  - {fileID: 704674052370710029, guid: 5beeee64d86bde445b06fd06fa1f62e8, type: 3}
-  - {fileID: 704674052370710029, guid: aec63a46f110e244bacdd02eefbb63eb, type: 3}
-  - {fileID: 704674052370710029, guid: e3573199a281b5d46a1d3380e1908b1c, type: 3}
-  - {fileID: 704674052370710029, guid: 9b5eb5c9eac3df34f9c6b27f03b00bb1, type: 3}
-  - {fileID: 704674052370710029, guid: 2766553f3a2257c4ca87041fdf7b0f68, type: 3}
-  - {fileID: 704674052370710029, guid: c29cb7ced7d72e347b0b0cf019fb445c, type: 3}
-  - {fileID: 704674052370710029, guid: 35b1c2c3ce555784dbca8b8c3ac15d54, type: 3}
-  - {fileID: 704674052370710029, guid: 14f0ea0a095e5a34d90227e498b1fa58, type: 3}
-  - {fileID: 704674052370710029, guid: 1a9d1395f3a56db459b09cbf953ac5ea, type: 3}
-  - {fileID: 704674052370710029, guid: cba362a4570aa074c892b5c4551358c8, type: 3}
-  - {fileID: 704674052370710029, guid: 049509a72858d934c8061fa529f80e2e, type: 3}
-  - {fileID: 704674052370710029, guid: 8c873a37402858e4fa4c8a5cb05b3976, type: 3}
-  - {fileID: 704674052370710029, guid: ab51179d26ac84e4fbbc0c9b676bfc9c, type: 3}
-  - {fileID: 704674052370710029, guid: bbf7351d2ae275b4685abdff3fce3c60, type: 3}
-  - {fileID: 704674052370710029, guid: d6d7d3fd455671f48bcfca49886433ac, type: 3}
+  - {fileID: 704674052370710029, guid: 1e54f310dbcd1124793c8620e0ab342d, type: 3}
+  - {fileID: 704674052370710029, guid: 09cb0ab7c9f958b41a3c3e2aab6ae847, type: 3}
+  - {fileID: 704674052370710029, guid: daef0f05a92a86545b16a498ab7c7d95, type: 3}
   cellObject: {fileID: 4244285741663257689, guid: 22101d326b692c344afc75606f6ffc19, type: 3}
-  startTile: {fileID: 704674052370710029, guid: 69ec538d61fbfa14fb107576c121900a, type: 3}
-  endTile: {fileID: 704674052370710029, guid: 69ec538d61fbfa14fb107576c121900a, type: 3}
+  startTile: {fileID: 704674052370710029, guid: a73700156299bb144a78a4bdeb5ba143, type: 3}
+  endTile: {fileID: 704674052370710029, guid: a73700156299bb144a78a4bdeb5ba143, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Tiles
 {
@@ -9,7 +11,7 @@ namespace Tiles
         [SerializeField] private bool collapsed;
         [SerializeField] private List<GridTile> availableTiles = new List<GridTile>();
 
-        [SerializeField] private double distanceToEdge;
+        [SerializeField] public double distanceToEdge;
         private GridTile tile;
     
         public void CreateCellData(List<GridTile> tiles, bool collapsed)
@@ -23,6 +25,7 @@ namespace Tiles
             availableTiles = tiles;
             this.collapsed = collapsed;
             distanceToEdge = distance;
+            if(tile){Destroy(tile.gameObject);}
             //Debug.Log(distance);
         }
 
@@ -49,7 +52,7 @@ namespace Tiles
             int[] probabilityArray = new int[availableTiles.Count];
             for (int i = 0; i < availableTiles.Count; i++)
             {
-                ongoingCount = ongoingCount + availableTiles[i].weight;
+                ongoingCount = ongoingCount + WeightFunction(availableTiles[i]);
                 probabilityArray[i] = ongoingCount;
                 
             }
@@ -64,6 +67,25 @@ namespace Tiles
 
             return 0;
 
+        }
+
+        private int WeightFunction(GridTile gridTile)
+        {
+            if (gridTile.walkable)
+            {
+                double weightedProb = System.Math.Pow(gridTile.weight, 4 - distanceToEdge);
+                Debug.Log(weightedProb);
+                return (int)Math.Round(weightedProb);
+            }
+            return gridTile.weight;
+        }
+
+        public void SetTile(GridTile gridTile)
+        {
+            tile = Instantiate(gridTile, transform.position, Quaternion.identity);
+            availableTiles = new List<GridTile>();
+            tile.transform.parent = this.transform;
+            collapsed = true;
         }
 
         public void SetPossibleTiles(List<GridTile> tiles)

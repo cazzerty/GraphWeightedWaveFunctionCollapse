@@ -61,7 +61,7 @@ MonoBehaviour:
   - {fileID: 704674052370710029, guid: 81a45620e9b8b8941bc34cb86d9e4d1a, type: 3}
   - {fileID: 704674052370710029, guid: f178b93350a46604fa84208503832a7a, type: 3}
   - {fileID: 704674052370710029}
-  weight: 1
+  weight: 3
   walkable: 1
   limit: 0
 --- !u!212 &7010834073529722979

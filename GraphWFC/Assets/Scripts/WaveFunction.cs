@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Tiles;
 using UnityEngine;
 using Tile = UnityEngine.Tilemaps.Tile;
@@ -14,6 +16,8 @@ public class WaveFunction : MonoBehaviour
 
     private GraphManager _graphManager;
     private List<GridCell> gridCells = new List<GridCell>();
+
+    [SerializeField] private GridTile startTile, endTile;
     
     
     // Start is called before the first frame update
@@ -22,8 +26,21 @@ public class WaveFunction : MonoBehaviour
         if (_graphManager == null) { _graphManager = GetComponent<GraphManager>();}
         //if(ErrorCheck()){return;}
         InitialiseGrid();
+        CollapseSetCells();
         CollapseCells();
 
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            if (_graphManager == null) { _graphManager = GetComponent<GraphManager>();}
+            //if(ErrorCheck()){return;}
+            ResetCells();
+            CollapseSetCells();
+            CollapseCells();
+        }
     }
 
     private void InitialiseGrid()
@@ -39,6 +56,31 @@ public class WaveFunction : MonoBehaviour
             }
         }
     }
+    
+    private void ResetCells()
+    {
+        foreach (GridCell cell in gridCells)
+        {
+            cell.CreateCellData(tileSet, false, cell.distanceToEdge);
+        }
+    }
+
+    private void CollapseSetCells()
+    {
+        if (startTile)
+        {
+            int index = GetClosestCellIndex(_graphManager.GetVertexWorldPosition(_graphManager.start));
+            gridCells[index].SetTile(startTile);
+            UpdateEntropy(index);
+        }
+        if (endTile)
+        {
+            int index = GetClosestCellIndex(_graphManager.GetVertexWorldPosition(_graphManager.end));
+            gridCells[index].SetTile(endTile);
+            UpdateEntropy(index);
+        }
+        
+    }
 
     private void CollapseCells()
     {
@@ -51,6 +93,22 @@ public class WaveFunction : MonoBehaviour
             UpdateEntropy(index);
             
         }
+    }
+
+    private int GetClosestCellIndex(Vector3 worldPos)
+    {
+        int closestIndex = 0;
+        //Could be faster using a* distance heuristic but I am lazy
+        for (int i = 0; i < gridCells.Count(); i ++)
+        {
+            if ((Vector3.Distance(gridCells[closestIndex].transform.position, worldPos) >
+                 Vector3.Distance(gridCells[i].transform.position, worldPos)))
+            {
+                closestIndex = i;
+            }
+        }
+
+        return closestIndex;
     }
 
     private int GetLowestEntropyCellIndex()

@@ -15,9 +15,9 @@ public class GraphManager : MonoBehaviour
     [SerializeField] private bool renderGizmos = true;
     [SerializeField] private bool renderShortestDistanceToLine = true;
 
-    [SerializeField] private int start = 0;
+    [SerializeField] public int start = 0;
 
-    [SerializeField] private int end = 1;
+    [SerializeField] public int end = 1;
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,11 +26,11 @@ public class GraphManager : MonoBehaviour
 
     public void CreateDebugGraph()
     {
-        AddVertex(1,new Vector3(10,3,0));
-        AddVertex(1,new Vector3(10,6,0));
-        AddVertex(1,new Vector3(12,6,0));
-        AddVertex(1,new Vector3(3,2,0));
-        AddVertex(1,new Vector3(15,8,0));
+        AddVertex(1,new Vector3(20,23,0));
+        AddVertex(1,new Vector3(20,26,0));
+        AddVertex(1,new Vector3(22,26,0));
+        AddVertex(1,new Vector3(13,22,0));
+        AddVertex(1,new Vector3(25,28,0));
         AddEdge(1,0,1);
         AddEdge(1,1,2);
         AddEdge(1,1,3);
@@ -55,6 +55,11 @@ public class GraphManager : MonoBehaviour
     {
         int size = _vertices.Count;
         _adjacencyMatrix = new double[size,size];
+    }
+
+    public Vector3 GetVertexWorldPosition(int index)
+    {
+        return _vertices[index].GetWorldPosition();
     }
 
     #region DistanceMath

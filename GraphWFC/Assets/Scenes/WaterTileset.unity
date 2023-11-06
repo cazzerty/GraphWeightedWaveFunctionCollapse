@@ -368,9 +368,10 @@ MonoBehaviour:
   - {fileID: 704674052370710029, guid: ab51179d26ac84e4fbbc0c9b676bfc9c, type: 3}
   - {fileID: 704674052370710029, guid: bbf7351d2ae275b4685abdff3fce3c60, type: 3}
   - {fileID: 704674052370710029, guid: d6d7d3fd455671f48bcfca49886433ac, type: 3}
+  - {fileID: 704674052370710029, guid: f6ca88edee1a4f544b4910c435550c2e, type: 3}
   cellObject: {fileID: 4244285741663257689, guid: 22101d326b692c344afc75606f6ffc19, type: 3}
-  startTile: {fileID: 704674052370710029, guid: 69ec538d61fbfa14fb107576c121900a, type: 3}
-  endTile: {fileID: 704674052370710029, guid: 69ec538d61fbfa14fb107576c121900a, type: 3}
+  startTile: {fileID: 704674052370710029, guid: 566002382114bb448b8ff54c5347dea9, type: 3}
+  endTile: {fileID: 704674052370710029, guid: 566002382114bb448b8ff54c5347dea9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

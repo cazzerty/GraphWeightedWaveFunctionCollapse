@@ -18,7 +18,9 @@ public class WaveFunction : MonoBehaviour
     private List<GridCell> gridCells = new List<GridCell>();
 
     [SerializeField] private GridTile startTile, endTile;
-    
+
+    private float timer = 0;
+    [SerializeField] private bool auto = false;
     
     // Start is called before the first frame update
     void Start()
@@ -35,8 +37,11 @@ public class WaveFunction : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if(auto){timer = timer + Time.deltaTime;}
+        
+        if (Input.GetKeyUp(KeyCode.Space) || timer > 1f)
         {
+            ScreenCapture.CaptureScreenshot("F:/GraphWFC/screenshot" + System.DateTime.Now.ToString("MM-dd-yy (HH-mm-ss)") + ".png");;
             if (_graphManager == null) { _graphManager = GetComponent<GraphManager>();}
             //if(ErrorCheck()){return;}
             ResetCells();
@@ -44,6 +49,7 @@ public class WaveFunction : MonoBehaviour
             CollapseCells();
             
             Debug.Log("IS VALID?: " + IsEndReachable());
+            timer = 0;
         }
     }
 
@@ -55,7 +61,9 @@ public class WaveFunction : MonoBehaviour
             {
                 GridCell newCell = Instantiate(cellObject, new Vector2(x, y), Quaternion.identity);
                 newCell.transform.parent = this.transform;
-                newCell.CreateCellData(tileSet, false, _graphManager.GetDistanceToClosestEdge(newCell.transform.position));
+                double[] distanceEdgeWeight = _graphManager.GetDistanceToClosestEdgeAndEdgeWeight(newCell.transform.position);
+                newCell.CreateCellData(tileSet, false, distanceEdgeWeight[0]);
+                newCell.SetClosestEdgeWeight(distanceEdgeWeight[1]);
                 gridCells.Add(newCell);
             }
         }
@@ -175,14 +183,8 @@ public class WaveFunction : MonoBehaviour
         cellQueue.Enqueue(gridCells[GetClosestCellIndex(_graphManager.GetVertexWorldPosition(_graphManager.start))]);
 
         GridCell endCell = gridCells[GetClosestCellIndex(_graphManager.GetVertexWorldPosition(_graphManager.end))];
-        int count = 0;
         while (cellQueue.Count > 0)
         {
-            count++;
-            if (count >= (gridDimensions.x * gridDimensions.y)) { cellQueue = new Queue<GridCell>();
-                break;
-            }
-            
             if (cellQueue.Peek() == endCell) { return true; } //Is End?
             
             //Get current Index

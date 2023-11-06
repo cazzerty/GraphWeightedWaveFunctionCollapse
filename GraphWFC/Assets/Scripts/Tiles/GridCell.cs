@@ -12,6 +12,7 @@ namespace Tiles
         [SerializeField] private List<GridTile> availableTiles = new List<GridTile>();
 
         [SerializeField] public double distanceToEdge;
+        [SerializeField] private double closestEdgeWeight = 4;
         public GridTile tile;
     
         public void CreateCellData(List<GridTile> tiles, bool collapsed)
@@ -72,9 +73,28 @@ namespace Tiles
 
         private int WeightFunction(GridTile gridTile)
         {
+            //return gridTile.weight;
+            //return gridTile.weight;
             if (gridTile.walkable)
             {
-                double weightedProb = System.Math.Pow(gridTile.weight, 4 - distanceToEdge);
+                double weightedProb = System.Math.Pow(gridTile.weight, closestEdgeWeight - distanceToEdge);
+                //double weightedProb = gridTile.weight * closestEdgeWeight - distanceToEdge;
+                if (weightedProb < 1) { return 1;} //minimum
+                //Debug.Log(weightedProb);
+                return (int)Math.Round(weightedProb);
+            }
+            
+            //return gridTile.weight;
+
+            if (!gridTile.walkable)
+            {
+                double weightedProb = System.Math.Pow(gridTile.weight, distanceToEdge - closestEdgeWeight);
+                //double weightedProb = gridTile.weight * distanceToEdge - closestEdgeWeight;
+                if (weightedProb < 1) { return 0;} //minimum
+
+                if (weightedProb > 65536)
+                {
+                    return 65536;}
                 //Debug.Log(weightedProb);
                 return (int)Math.Round(weightedProb);
             }
@@ -122,8 +142,8 @@ namespace Tiles
 
         public int GetEntropy()
         {
-            return availableTiles.Count;
-            return availableTiles.Count + ((int)distanceToEdge)/5;
+            //return availableTiles.Count;
+            return availableTiles.Count + ((int)distanceToEdge)/100;
         }
 
         /// <summary>
@@ -162,5 +182,10 @@ namespace Tiles
         }
 
         public bool GetCollapsed() { return collapsed; }
+
+        public void SetClosestEdgeWeight(double edgeWeight)
+        {
+            closestEdgeWeight = edgeWeight;
+        }
     }
 }

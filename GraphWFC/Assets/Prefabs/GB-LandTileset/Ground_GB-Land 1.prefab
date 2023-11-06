@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3632415905240031841}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 939988222, guid: daffd7bbc0448d445bfad29a49f4b3c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1383434145406314132
@@ -98,11 +98,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 445247510, guid: 94676b568f49ce94185a731bf11e5b32, type: 3}
-  - {fileID: -1030753728, guid: 94676b568f49ce94185a731bf11e5b32, type: 3}
-  - {fileID: -360360688, guid: 94676b568f49ce94185a731bf11e5b32, type: 3}
-  - {fileID: -1141551738, guid: 94676b568f49ce94185a731bf11e5b32, type: 3}
-  - {fileID: 1270635862, guid: 94676b568f49ce94185a731bf11e5b32, type: 3}
+  - {fileID: 952087236, guid: daffd7bbc0448d445bfad29a49f4b3c6, type: 3}
+  - {fileID: -1918454767, guid: daffd7bbc0448d445bfad29a49f4b3c6, type: 3}
+  - {fileID: 1637095267, guid: daffd7bbc0448d445bfad29a49f4b3c6, type: 3}
+  - {fileID: 939988222, guid: daffd7bbc0448d445bfad29a49f4b3c6, type: 3}
+  - {fileID: -211055721, guid: daffd7bbc0448d445bfad29a49f4b3c6, type: 3}
   firstOffset: 4
   spriteRenderer: {fileID: 0}
 --- !u!1 &6863917733019123780
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 704674052370710029}
   - component: {fileID: 7010834073529722979}
   m_Layer: 0
-  m_Name: Ground_GB-Land
+  m_Name: Ground_GB-Land 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,31 +152,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upNeighbours:
-  - {fileID: 704674052370710029}
-  - {fileID: 704674052370710029, guid: e3573199a281b5d46a1d3380e1908b1c, type: 3}
+  - {fileID: 704674052370710029, guid: 69ec538d61fbfa14fb107576c121900a, type: 3}
   - {fileID: 704674052370710029, guid: aec63a46f110e244bacdd02eefbb63eb, type: 3}
-  - {fileID: 704674052370710029, guid: 9b5eb5c9eac3df34f9c6b27f03b00bb1, type: 3}
-  - {fileID: 704674052370710029, guid: f6ca88edee1a4f544b4910c435550c2e, type: 3}
-  downNeighbours:
-  - {fileID: 704674052370710029}
-  - {fileID: 704674052370710029, guid: 14f0ea0a095e5a34d90227e498b1fa58, type: 3}
-  - {fileID: 704674052370710029, guid: 14f0ea0a095e5a34d90227e498b1fa58, type: 3}
-  - {fileID: 704674052370710029, guid: 35b1c2c3ce555784dbca8b8c3ac15d54, type: 3}
-  - {fileID: 704674052370710029, guid: f6ca88edee1a4f544b4910c435550c2e, type: 3}
-  leftNeighbours:
-  - {fileID: 704674052370710029}
-  - {fileID: 704674052370710029, guid: 1a9d1395f3a56db459b09cbf953ac5ea, type: 3}
-  - {fileID: 704674052370710029, guid: c29cb7ced7d72e347b0b0cf019fb445c, type: 3}
-  - {fileID: 704674052370710029, guid: 9b5eb5c9eac3df34f9c6b27f03b00bb1, type: 3}
-  - {fileID: 704674052370710029, guid: f6ca88edee1a4f544b4910c435550c2e, type: 3}
-  rightNeighbours:
-  - {fileID: 704674052370710029}
-  - {fileID: 704674052370710029, guid: 14f0ea0a095e5a34d90227e498b1fa58, type: 3}
-  - {fileID: 704674052370710029, guid: 2766553f3a2257c4ca87041fdf7b0f68, type: 3}
   - {fileID: 704674052370710029, guid: e3573199a281b5d46a1d3380e1908b1c, type: 3}
-  - {fileID: 704674052370710029, guid: f6ca88edee1a4f544b4910c435550c2e, type: 3}
-  weight: 20
-  walkable: 1
+  - {fileID: 704674052370710029, guid: 9b5eb5c9eac3df34f9c6b27f03b00bb1, type: 3}
+  downNeighbours:
+  - {fileID: 704674052370710029, guid: 69ec538d61fbfa14fb107576c121900a, type: 3}
+  - {fileID: 704674052370710029, guid: 35b1c2c3ce555784dbca8b8c3ac15d54, type: 3}
+  - {fileID: 704674052370710029, guid: 14f0ea0a095e5a34d90227e498b1fa58, type: 3}
+  - {fileID: 704674052370710029, guid: 1a9d1395f3a56db459b09cbf953ac5ea, type: 3}
+  leftNeighbours:
+  - {fileID: 704674052370710029, guid: 69ec538d61fbfa14fb107576c121900a, type: 3}
+  - {fileID: 704674052370710029, guid: 9b5eb5c9eac3df34f9c6b27f03b00bb1, type: 3}
+  - {fileID: 704674052370710029, guid: c29cb7ced7d72e347b0b0cf019fb445c, type: 3}
+  - {fileID: 704674052370710029, guid: 1a9d1395f3a56db459b09cbf953ac5ea, type: 3}
+  rightNeighbours:
+  - {fileID: 704674052370710029, guid: 69ec538d61fbfa14fb107576c121900a, type: 3}
+  - {fileID: 704674052370710029, guid: e3573199a281b5d46a1d3380e1908b1c, type: 3}
+  - {fileID: 704674052370710029, guid: 2766553f3a2257c4ca87041fdf7b0f68, type: 3}
+  - {fileID: 704674052370710029, guid: 14f0ea0a095e5a34d90227e498b1fa58, type: 3}
+  weight: 5
+  walkable: 0
   limit: 0
 --- !u!212 &7010834073529722979
 SpriteRenderer:

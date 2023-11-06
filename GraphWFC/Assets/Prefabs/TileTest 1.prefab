@@ -57,7 +57,7 @@ MonoBehaviour:
   rightNeighbours:
   - {fileID: 704674052370710029}
   - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
-  weight: 5
+  weight: 2
   walkable: 0
   limit: 0
 --- !u!212 &7010834073529722979

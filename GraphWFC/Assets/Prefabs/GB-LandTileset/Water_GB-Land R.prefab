@@ -46,13 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upNeighbours:
-  - {fileID: 704674052370710029}
   - {fileID: 704674052370710029, guid: 1a9d1395f3a56db459b09cbf953ac5ea, type: 3}
+  - {fileID: 704674052370710029}
   - {fileID: 704674052370710029, guid: 8c873a37402858e4fa4c8a5cb05b3976, type: 3}
   - {fileID: 704674052370710029, guid: bbf7351d2ae275b4685abdff3fce3c60, type: 3}
   downNeighbours:
-  - {fileID: 704674052370710029}
   - {fileID: 704674052370710029, guid: 9b5eb5c9eac3df34f9c6b27f03b00bb1, type: 3}
+  - {fileID: 704674052370710029}
   - {fileID: 704674052370710029, guid: d6d7d3fd455671f48bcfca49886433ac, type: 3}
   - {fileID: 704674052370710029, guid: 049509a72858d934c8061fa529f80e2e, type: 3}
   leftNeighbours:

@@ -14,6 +14,8 @@ namespace Tiles
         [SerializeField] public double distanceToEdge;
         [SerializeField] private double closestEdgeWeight = 4;
         public GridTile tile;
+
+        private int graphWeightingStyle = 1; //0 = none 1 = linear, 2 = exponential
     
         public void CreateCellData(List<GridTile> tiles, bool collapsed)
         {
@@ -21,6 +23,12 @@ namespace Tiles
             this.collapsed = collapsed;
         }
         
+        /// <summary>
+        /// Will act as a reset if there is already data.
+        /// </summary>
+        /// <param name="tiles"></param>
+        /// <param name="collapsed"></param>
+        /// <param name="distance"></param>
         public void CreateCellData(List<GridTile> tiles, bool collapsed, double distance)
         {
             availableTiles = tiles;
@@ -29,19 +37,44 @@ namespace Tiles
             if(tile){Destroy(tile.gameObject);}
             //Debug.Log(distance);
         }
-
+        
+        /// <summary>
+        /// Collapses the entropy of a cell and instantiates the selected grid tile.
+        /// Entropy collapse will be weighted by a cell's proximity to it's closest edge.
+        /// the parameter False can be added to avoid using graph weighting.
+        /// </summary>
         public void CollapseEntropy()
         {
+            Debug.Log("WFC GRAPH");
             int selector = 0;
-            if (distanceToEdge > 1)
-            {
-                selector = 1;}
-            
-            //todo Weight probability by distance
             selector = WeightedRandomSelection();
-            
-            Console.WriteLine(this.transform.position);
 
+            tile = Instantiate(availableTiles[selector], transform.position, Quaternion.identity); 
+            availableTiles = new List<GridTile>();
+            tile.transform.parent = this.transform;
+            collapsed = true;
+        }
+        
+        /// <summary>
+        /// Collapses the entropy of a cell and instantiates the selected grid tile.
+        /// If true entropy collapse will be weighted by a cell's proximity to it's closest edge.
+        /// Otherwise standard entropy collapse will be performed.
+        /// </summary>
+        /// <param name="useGraph"></param>
+        public void CollapseEntropy(bool useGraph)
+        {
+            int selector = 0;
+
+            if (useGraph)
+            {
+                CollapseEntropy();
+                return;
+            }
+            
+            //Runs base WFC
+            selector = BasicWeightedRandomSelection();
+            
+            //Debug.Log("SEL: " + sel + " ONG: " + ongoingCount + " IN: " + selector + "PROBC: " + probabilityArray.Length);
             tile = Instantiate(availableTiles[selector], transform.position, Quaternion.identity); 
             availableTiles = new List<GridTile>();
             tile.transform.parent = this.transform;
@@ -70,6 +103,28 @@ namespace Tiles
             return 0;
 
         }
+        private int BasicWeightedRandomSelection()
+        {
+            int ongoingCount = 0;
+            int[] probabilityArray = new int[availableTiles.Count];
+            for (int i = 0; i < availableTiles.Count; i++)
+            {
+                ongoingCount = ongoingCount + availableTiles[i].weight;
+                probabilityArray[i] = ongoingCount;
+                
+            }
+            int selector = Random.Range(0, ongoingCount);
+            for (int i = 0; i < probabilityArray.Length; i++)
+            {
+                if (selector < probabilityArray[i])
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+
+        }
 
         private int WeightFunction(GridTile gridTile)
         {
@@ -78,7 +133,8 @@ namespace Tiles
             if (gridTile.walkable)
             {
                 double weightedProb = System.Math.Pow(gridTile.weight, closestEdgeWeight - distanceToEdge);
-                //double weightedProb = gridTile.weight * closestEdgeWeight - distanceToEdge;
+                //double weightedProb = gridTile.weight * (closestEdgeWeight - distanceToEdge);
+                //double weightedProb = gridTile.weight * ((closestEdgeWeight - distanceToEdge) /2);
                 if (weightedProb < 1) { return 1;} //minimum
                 //Debug.Log(weightedProb);
                 return (int)Math.Round(weightedProb);
@@ -89,7 +145,8 @@ namespace Tiles
             if (!gridTile.walkable)
             {
                 double weightedProb = System.Math.Pow(gridTile.weight, distanceToEdge - closestEdgeWeight);
-                //double weightedProb = gridTile.weight * distanceToEdge - closestEdgeWeight;
+                //double weightedProb = gridTile.weight * (distanceToEdge - closestEdgeWeight);
+                //double weightedProb = gridTile.weight * (distanceToEdge - closestEdgeWeight) / 2;
                 if (weightedProb < 1) { return 0;} //minimum
 
                 if (weightedProb > 65536)

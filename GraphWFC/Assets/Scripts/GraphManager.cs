@@ -8,7 +8,7 @@ using UnityEngine.Serialization;
 
 public class GraphManager : MonoBehaviour
 {
-    [SerializeField] private List<Vertex> _vertices = new List<Vertex>();
+    public List<Vertex> _vertices = new List<Vertex>();
     //[SerializeField] private List<Vector3> _verticesToAdd;
     [SerializeField] private double[,] _adjacencyMatrix;
 
@@ -26,18 +26,19 @@ public class GraphManager : MonoBehaviour
 
     public void CreateDebugGraph()
     {
-        Graph2();
+        Graph3();
 
         end = _vertices.Count - 1;
     }
 
     private void Graph1()
     {
-        AddVertex(1,new Vector3(20,23,0));
-        AddVertex(1,new Vector3(20,26,0));
-        AddVertex(1,new Vector3(22,26,0));
-        AddVertex(1,new Vector3(13,22,0));
-        AddVertex(1,new Vector3(25,28,0));
+        //20*20
+        AddVertex(1,new Vector3(10,03,0));
+        AddVertex(1,new Vector3(10,06,0));
+        AddVertex(1,new Vector3(12,06,0));
+        AddVertex(1,new Vector3(3,02,0));
+        AddVertex(1,new Vector3(15,08,0));
         AddEdge(1,0,1);
         AddEdge(1,1,2);
         AddEdge(1,1,3);
@@ -46,6 +47,7 @@ public class GraphManager : MonoBehaviour
 
     private void Graph2()
     {
+        //Size 50 * 50
         AddVertex(1,new Vector3(5,5,0)); //0
         AddVertex(1,new Vector3(15,5,0)); //1
         AddVertex(1,new Vector3(25,5,0)); //2
@@ -71,6 +73,7 @@ public class GraphManager : MonoBehaviour
     
     private void Graph3()
     {
+        //Size 50 * 50
         AddVertex(1,new Vector3(5,5,0)); //0
         AddVertex(1,new Vector3(15,4,0)); //1
         AddVertex(1,new Vector3(25,6,0)); //2
@@ -81,7 +84,8 @@ public class GraphManager : MonoBehaviour
         AddVertex(1,new Vector3(35,16,0)); //6
         AddVertex(1,new Vector3(45,15,0)); //7
         
-        AddVertex(1,new Vector3(38,24,0)); //7
+        AddVertex(2,new Vector3(11,22,0)); //8
+        AddVertex(1,new Vector3(38,24,0)); //9
         
         AddEdge(3,0,1);
         AddEdge(3,1,2);
@@ -94,7 +98,9 @@ public class GraphManager : MonoBehaviour
         AddEdge(6,4,5);
         AddEdge(3, 6, 7);
         
-        AddEdge(3, 7, 8);
+        AddEdge(3, 7, 9);
+        AddEdge(1, 5, 9);
+        
         AddEdge(1, 5, 8);
 
     }

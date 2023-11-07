@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Tiles;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Tile = UnityEngine.Tilemaps.Tile;
 
 public class WaveFunction : MonoBehaviour
@@ -18,9 +19,15 @@ public class WaveFunction : MonoBehaviour
     private List<GridCell> gridCells = new List<GridCell>();
 
     [SerializeField] private GridTile startTile, endTile;
-
+    
+    //SETTINGS
     private float timer = 0;
     [SerializeField] private bool auto = false;
+
+    [FormerlySerializedAs("tileLayout")] [SerializeField] private PresetLayout presetLayout;
+    [FormerlySerializedAs("patternTiles")] [SerializeField] private GridTile[] presetTiles = new GridTile[2];
+
+    [SerializeField] private bool useGraphProximity = true;
     
     // Start is called before the first frame update
     void Start()
@@ -28,7 +35,7 @@ public class WaveFunction : MonoBehaviour
         if (_graphManager == null) { _graphManager = GetComponent<GraphManager>();}
         //if(ErrorCheck()){return;}
         InitialiseGrid();
-        CollapseSetCells();
+        CollapsePresetCells();
         CollapseCells();
         
         Debug.Log("IS VALID?: " + IsEndReachable());
@@ -45,7 +52,7 @@ public class WaveFunction : MonoBehaviour
             if (_graphManager == null) { _graphManager = GetComponent<GraphManager>();}
             //if(ErrorCheck()){return;}
             ResetCells();
-            CollapseSetCells();
+            CollapsePresetCells();
             CollapseCells();
             
             Debug.Log("IS VALID?: " + IsEndReachable());
@@ -65,10 +72,14 @@ public class WaveFunction : MonoBehaviour
                 newCell.CreateCellData(tileSet, false, distanceEdgeWeight[0]);
                 newCell.SetClosestEdgeWeight(distanceEdgeWeight[1]);
                 gridCells.Add(newCell);
+                newCell.name = "Cell_" + gridCells.Count.ToString();
             }
         }
     }
     
+    /// <summary>
+    /// Resets the graph to a state with entropy reset.
+    /// </summary>
     private void ResetCells()
     {
         foreach (GridCell cell in gridCells)
@@ -77,7 +88,11 @@ public class WaveFunction : MonoBehaviour
         }
     }
 
-    private void CollapseSetCells()
+    /// <summary>
+    /// Collapses any preset cells such as the start and end.
+    /// Tiles must be set in the inspector, otherwise that cell will not be set;
+    /// </summary>
+    private void CollapsePresetCells()
     {
         if (startTile)
         {
@@ -92,6 +107,36 @@ public class WaveFunction : MonoBehaviour
             UpdateEntropy(index);
         }
         
+        //Used for adding a preset structure. Tiles must be added
+        if (presetLayout)
+        {
+            foreach (Vertex vertex in _graphManager._vertices)
+            {
+                if (vertex.GetWeight() == 2)
+                {
+                    
+                    int index = GetClosestCellIndex(vertex.GetWorldPosition());
+                    index = index - gridDimensions.x * (presetLayout.tilePattern.GetLength(1) / 2);
+                    index = index - (presetLayout.tilePattern.GetLength(0) / 2);
+                    
+                    for (int y = 0; y < presetLayout.tilePattern.GetLength(1); y++)
+                    {
+                        for (int x= 0; x < presetLayout.tilePattern.GetLength(0); x++)
+                        {
+                            gridCells[index].SetTile(presetTiles[presetLayout.tilePattern[x,y]]);
+                            UpdateEntropy(index);
+                            index++;
+                        }
+
+                        index = index - presetLayout.tilePattern.GetLength(0);
+
+                        index = index + gridDimensions.x;
+                    }
+                    
+                }
+            }
+        }
+        
     }
 
     private void CollapseCells()
@@ -101,7 +146,7 @@ public class WaveFunction : MonoBehaviour
         {
             index = GetLowestEntropyCellIndex();
             if(index == -1){break;}
-            gridCells[index].CollapseEntropy();
+            gridCells[index].CollapseEntropy(useGraphProximity);
             UpdateEntropy(index);
             
         }
@@ -174,6 +219,9 @@ public class WaveFunction : MonoBehaviour
     /// This is a lazily implemented and cursed breadth first search. Horribly un-optimal but it technically works
     /// Should be an a* implementation
     /// Entirely my fault for the selected data structures
+    ///
+    ///
+    /// FORGET ALL THAT I FIXED IT
     /// </summary>
     /// <returns></returns>
     private bool IsEndReachable()

@@ -239,7 +239,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 889388165}
-  - component: {fileID: 889388164}
   m_Layer: 0
   m_Name: DistanceTester
   m_TagString: Untagged
@@ -247,20 +246,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &889388164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889388163}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 804dc35f2aa9b514ca56c43955991d45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  graphManager: {fileID: 1396179816}
-  distance: 0
 --- !u!4 &889388165
 Transform:
   m_ObjectHideFlags: 0
@@ -286,8 +271,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1396179817}
   - component: {fileID: 1396179816}
-  - component: {fileID: 1396179819}
   - component: {fileID: 1396179820}
+  - component: {fileID: 1396179821}
   m_Layer: 0
   m_Name: PCG_Manager
   m_TagString: Untagged
@@ -326,18 +311,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!156049354 &1396179819
-Grid:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1396179815}
-  m_Enabled: 1
-  m_CellSize: {x: 1, y: 1, z: 1}
-  m_CellGap: {x: 0, y: 0, z: 0}
-  m_CellLayout: 0
-  m_CellSwizzle: 0
 --- !u!114 &1396179820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -359,6 +332,25 @@ MonoBehaviour:
   cellObject: {fileID: 4244285741663257689, guid: 22101d326b692c344afc75606f6ffc19, type: 3}
   startTile: {fileID: 704674052370710029, guid: cc23093979053af4595532bea085786d, type: 3}
   endTile: {fileID: 704674052370710029, guid: cc23093979053af4595532bea085786d, type: 3}
+  auto: 0
+  presetLayout: {fileID: 1396179821}
+  presetTiles:
+  - {fileID: 704674052370710029, guid: 2705e8a994b29cb41968f05ef827a4c8, type: 3}
+  - {fileID: 704674052370710029, guid: 53e9a5e9760373d45953292b430080b4, type: 3}
+  - {fileID: 704674052370710029, guid: 668d121309bad3a4fa109b8084f4108c, type: 3}
+  useGraphProximity: 1
+--- !u!114 &1396179821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1396179815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23966f1aea280a2479fcafd2a7565c06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

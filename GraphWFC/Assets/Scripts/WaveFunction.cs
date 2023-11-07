@@ -9,25 +9,32 @@ using Tile = UnityEngine.Tilemaps.Tile;
 
 public class WaveFunction : MonoBehaviour
 {
+    [Header("GRAPH BASED WAVE FUNCTION COLLAPSE")]
     [SerializeField] private Vector2Int gridDimensions = new Vector2Int(20,10);
+    [SerializeField] private bool useGraphProximity = true;
 
+    [Header("--Tile Setup--")]
     [SerializeField] private List<GridTile> tileSet;
-
-    [SerializeField] private GridCell cellObject;
-
-    private GraphManager _graphManager;
-    private List<GridCell> gridCells = new List<GridCell>();
-
     [SerializeField] private GridTile startTile, endTile;
-    
-    //SETTINGS
-    private float timer = 0;
-    [SerializeField] private bool auto = false;
-
     [FormerlySerializedAs("tileLayout")] [SerializeField] private PresetLayout presetLayout;
     [FormerlySerializedAs("patternTiles")] [SerializeField] private GridTile[] presetTiles = new GridTile[2];
 
-    [SerializeField] private bool useGraphProximity = true;
+    [Header("--Cell Setup--")]
+    [SerializeField] private GridCell cellObject;
+    private List<GridCell> gridCells = new List<GridCell>();
+    [SerializeField] private int minimumWalkWeight = 1;
+    [SerializeField] private int minimumNonWalkWeight = 0;
+
+    private GraphManager _graphManager;
+    
+    //SETTINGS
+    private float timer = 0;
+    [Header("DEBUG")]
+    [SerializeField] private bool auto = false;
+
+
+
+    
     
     // Start is called before the first frame update
     void Start()
@@ -35,6 +42,7 @@ public class WaveFunction : MonoBehaviour
         if (_graphManager == null) { _graphManager = GetComponent<GraphManager>();}
         //if(ErrorCheck()){return;}
         InitialiseGrid();
+        SetCellValues();
         CollapsePresetCells();
         CollapseCells();
         
@@ -52,6 +60,7 @@ public class WaveFunction : MonoBehaviour
             if (_graphManager == null) { _graphManager = GetComponent<GraphManager>();}
             //if(ErrorCheck()){return;}
             ResetCells();
+            SetCellValues();
             CollapsePresetCells();
             CollapseCells();
             
@@ -85,6 +94,15 @@ public class WaveFunction : MonoBehaviour
         foreach (GridCell cell in gridCells)
         {
             cell.CreateCellData(tileSet, false, cell.distanceToEdge);
+        }
+    }
+    
+    private void SetCellValues()
+    {
+        foreach (GridCell cell in gridCells)
+        {
+            cell.minimumWalkWeight = minimumWalkWeight;
+            cell.minimumNonWalkWeight = minimumNonWalkWeight;
         }
     }
 

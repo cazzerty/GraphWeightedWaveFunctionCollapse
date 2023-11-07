@@ -18,6 +18,7 @@ public class GraphManager : MonoBehaviour
     [SerializeField] public int start = 0;
 
     [SerializeField] public int end = 1;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -27,7 +28,6 @@ public class GraphManager : MonoBehaviour
     public void CreateDebugGraph()
     {
         Graph3();
-
         end = _vertices.Count - 1;
     }
 

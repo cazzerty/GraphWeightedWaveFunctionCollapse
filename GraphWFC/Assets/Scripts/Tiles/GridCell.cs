@@ -16,6 +16,9 @@ namespace Tiles
         public GridTile tile;
 
         private int graphWeightingStyle = 1; //0 = none 1 = linear, 2 = exponential
+
+        [SerializeField] public int minimumWalkWeight = 1;
+        [SerializeField] public int minimumNonWalkWeight = 0;
     
         public void CreateCellData(List<GridTile> tiles, bool collapsed)
         {
@@ -45,7 +48,7 @@ namespace Tiles
         /// </summary>
         public void CollapseEntropy()
         {
-            Debug.Log("WFC GRAPH");
+            //Debug.Log("WFC GRAPH");
             int selector = 0;
             selector = WeightedRandomSelection();
 
@@ -73,8 +76,6 @@ namespace Tiles
             
             //Runs base WFC
             selector = BasicWeightedRandomSelection();
-            
-            //Debug.Log("SEL: " + sel + " ONG: " + ongoingCount + " IN: " + selector + "PROBC: " + probabilityArray.Length);
             tile = Instantiate(availableTiles[selector], transform.position, Quaternion.identity); 
             availableTiles = new List<GridTile>();
             tile.transform.parent = this.transform;
@@ -132,10 +133,10 @@ namespace Tiles
             //return gridTile.weight;
             if (gridTile.walkable)
             {
-                double weightedProb = System.Math.Pow(gridTile.weight, closestEdgeWeight - distanceToEdge);
-                //double weightedProb = gridTile.weight * (closestEdgeWeight - distanceToEdge);
+                //double weightedProb = System.Math.Pow(gridTile.weight, closestEdgeWeight - distanceToEdge);
+                double weightedProb = gridTile.weight * (closestEdgeWeight - distanceToEdge);
                 //double weightedProb = gridTile.weight * ((closestEdgeWeight - distanceToEdge) /2);
-                if (weightedProb < 1) { return 1;} //minimum
+                if (weightedProb < 1) { return minimumWalkWeight;} //minimum
                 //Debug.Log(weightedProb);
                 return (int)Math.Round(weightedProb);
             }
@@ -144,10 +145,10 @@ namespace Tiles
 
             if (!gridTile.walkable)
             {
-                double weightedProb = System.Math.Pow(gridTile.weight, distanceToEdge - closestEdgeWeight);
-                //double weightedProb = gridTile.weight * (distanceToEdge - closestEdgeWeight);
+                //double weightedProb = System.Math.Pow(gridTile.weight, distanceToEdge - closestEdgeWeight);
+                double weightedProb = gridTile.weight * (distanceToEdge - closestEdgeWeight);
                 //double weightedProb = gridTile.weight * (distanceToEdge - closestEdgeWeight) / 2;
-                if (weightedProb < 1) { return 0;} //minimum
+                if (weightedProb < 1) { return minimumNonWalkWeight;} //minimum
 
                 if (weightedProb > 65536)
                 {

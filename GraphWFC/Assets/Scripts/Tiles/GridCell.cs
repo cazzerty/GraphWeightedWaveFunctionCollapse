@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEditor;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 using Random = UnityEngine.Random;
 
 namespace Tiles
@@ -19,6 +21,7 @@ namespace Tiles
 
         [SerializeField] public int minimumWalkWeight = 1;
         [SerializeField] public int minimumNonWalkWeight = 0;
+        [SerializeField] public int weightingTypeWalk = 1, weightingTypeNonWalk = 1;
     
         public void CreateCellData(List<GridTile> tiles, bool collapsed)
         {
@@ -129,31 +132,46 @@ namespace Tiles
 
         private int WeightFunction(GridTile gridTile)
         {
-            //return gridTile.weight;
-            //return gridTile.weight;
+            double weightedProb = gridTile.weight;
             if (gridTile.walkable)
             {
-                //double weightedProb = System.Math.Pow(gridTile.weight, closestEdgeWeight - distanceToEdge);
-                double weightedProb = gridTile.weight * (closestEdgeWeight - distanceToEdge);
-                //double weightedProb = gridTile.weight * ((closestEdgeWeight - distanceToEdge) /2);
+                switch (weightingTypeWalk)
+                {
+                    case 0:
+                        return gridTile.weight;
+                    case 1:
+                        weightedProb = System.Math.Pow(gridTile.weight, closestEdgeWeight - distanceToEdge);
+                        break;
+                    case 2:
+                        weightedProb = gridTile.weight * (closestEdgeWeight - distanceToEdge);
+                        break;
+                }
+                //weightedProb = gridTile.weight * ((closestEdgeWeight - distanceToEdge) /2);
+                
                 if (weightedProb < 1) { return minimumWalkWeight;} //minimum
-                //Debug.Log(weightedProb);
                 return (int)Math.Round(weightedProb);
+                
             }
             
             //return gridTile.weight;
 
             if (!gridTile.walkable)
             {
-                //double weightedProb = System.Math.Pow(gridTile.weight, distanceToEdge - closestEdgeWeight);
-                double weightedProb = gridTile.weight * (distanceToEdge - closestEdgeWeight);
+                switch (weightingTypeNonWalk)
+                {
+                    case 0:
+                        return gridTile.weight;
+                    case 1:
+                        weightedProb = System.Math.Pow(gridTile.weight, distanceToEdge - closestEdgeWeight);
+                        break;
+                    case 2:
+                        weightedProb = gridTile.weight * (distanceToEdge - closestEdgeWeight);
+                        break;
+                }
                 //double weightedProb = gridTile.weight * (distanceToEdge - closestEdgeWeight) / 2;
                 if (weightedProb < 1) { return minimumNonWalkWeight;} //minimum
 
-                if (weightedProb > 65536)
-                {
-                    return 65536;}
-                //Debug.Log(weightedProb);
+                if (weightedProb > 65536) { return 65536;}
                 return (int)Math.Round(weightedProb);
             }
             return gridTile.weight;

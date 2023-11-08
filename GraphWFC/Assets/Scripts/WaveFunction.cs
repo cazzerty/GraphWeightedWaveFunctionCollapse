@@ -24,6 +24,8 @@ public class WaveFunction : MonoBehaviour
     private List<GridCell> gridCells = new List<GridCell>();
     [SerializeField] private int minimumWalkWeight = 1;
     [SerializeField] private int minimumNonWalkWeight = 0;
+    
+    [SerializeField, Range(0,2)] private int weightingTypeWalk = 1, weightingTypeNonWalk = 1;
 
     private GraphManager _graphManager;
     
@@ -103,6 +105,8 @@ public class WaveFunction : MonoBehaviour
         {
             cell.minimumWalkWeight = minimumWalkWeight;
             cell.minimumNonWalkWeight = minimumNonWalkWeight;
+            cell.weightingTypeWalk = weightingTypeWalk;
+            cell.weightingTypeNonWalk = weightingTypeNonWalk;
         }
     }
 

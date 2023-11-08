@@ -323,22 +323,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b0af0ef306a0247b781b1980e77dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridDimensions: {x: 50, y: 30}
+  gridDimensions: {x: 50, y: 35}
+  useGraphProximity: 1
   tileSet:
   - {fileID: 704674052370710029, guid: 81a45620e9b8b8941bc34cb86d9e4d1a, type: 3}
   - {fileID: 704674052370710029, guid: f178b93350a46604fa84208503832a7a, type: 3}
   - {fileID: 704674052370710029, guid: 3a610d5539b99744b99262e2e8c24d02, type: 3}
   - {fileID: 704674052370710029, guid: acbf9ddea7fbb0d47867c39e346bc292, type: 3}
-  cellObject: {fileID: 4244285741663257689, guid: 22101d326b692c344afc75606f6ffc19, type: 3}
   startTile: {fileID: 704674052370710029, guid: cc23093979053af4595532bea085786d, type: 3}
   endTile: {fileID: 704674052370710029, guid: cc23093979053af4595532bea085786d, type: 3}
-  auto: 0
   presetLayout: {fileID: 1396179821}
   presetTiles:
   - {fileID: 704674052370710029, guid: 2705e8a994b29cb41968f05ef827a4c8, type: 3}
   - {fileID: 704674052370710029, guid: 53e9a5e9760373d45953292b430080b4, type: 3}
   - {fileID: 704674052370710029, guid: 668d121309bad3a4fa109b8084f4108c, type: 3}
-  useGraphProximity: 1
+  cellObject: {fileID: 4244285741663257689, guid: 22101d326b692c344afc75606f6ffc19, type: 3}
+  minimumWalkWeight: 1
+  minimumNonWalkWeight: 0
+  weightingTypeWalk: 1
+  weightingTypeNonWalk: 1
+  auto: 0
 --- !u!114 &1396179821
 MonoBehaviour:
   m_ObjectHideFlags: 0

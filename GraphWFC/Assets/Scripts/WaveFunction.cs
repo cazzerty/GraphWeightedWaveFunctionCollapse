@@ -36,7 +36,11 @@ public class WaveFunction : MonoBehaviour
 
 
 
-    
+    private String SettingsString()
+    {
+        String s;
+        return (s = $"{gridDimensions.x}x{gridDimensions.y}_GP-{useGraphProximity}_wTW-{weightingTypeWalk}_wTNW-{weightingTypeNonWalk}_mWW-{minimumWalkWeight}_mNWW-{minimumNonWalkWeight}");
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -47,6 +51,7 @@ public class WaveFunction : MonoBehaviour
         SetCellValues();
         CollapsePresetCells();
         CollapseCells();
+        Debug.Log(SettingsString());
         
         Debug.Log("IS VALID?: " + IsEndReachable());
 
@@ -55,10 +60,14 @@ public class WaveFunction : MonoBehaviour
     void Update()
     {
         if(auto){timer = timer + Time.deltaTime;}
+
+        if (Input.GetKeyUp(KeyCode.Return))
+        {
+            ScreenCapture.CaptureScreenshot("F:/GraphWFC/" + SettingsString() + System.DateTime.Now.ToString("MM-dd-yy (HH-mm-ss)") + ".png");
+        }
         
         if (Input.GetKeyUp(KeyCode.Space) || timer > 1f)
         {
-            ScreenCapture.CaptureScreenshot("F:/GraphWFC/screenshot" + System.DateTime.Now.ToString("MM-dd-yy (HH-mm-ss)") + ".png");;
             if (_graphManager == null) { _graphManager = GetComponent<GraphManager>();}
             //if(ErrorCheck()){return;}
             ResetCells();

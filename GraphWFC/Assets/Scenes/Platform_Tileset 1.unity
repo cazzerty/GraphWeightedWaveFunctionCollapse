@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b0af0ef306a0247b781b1980e77dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridDimensions: {x: 50, y: 96}
+  gridDimensions: {x: 90, y: 50}
   useGraphProximity: 1
   tileSet:
   - {fileID: 704674052370710029, guid: 90d9489e12182a445beedfde2755aaf3, type: 3}
@@ -349,7 +349,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   cellObject: {fileID: 4244285741663257689, guid: 22101d326b692c344afc75606f6ffc19, type: 3}
-  minimumWalkWeight: 1
+  minimumWalkWeight: 0
   minimumNonWalkWeight: 0
   weightingTypeWalk: 1
   weightingTypeNonWalk: 1

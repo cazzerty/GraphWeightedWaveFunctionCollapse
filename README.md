@@ -1,2 +1,2 @@
-# GraphWaveFunctionCollapse
+# GraphWeightedWaveFunctionCollapse
  

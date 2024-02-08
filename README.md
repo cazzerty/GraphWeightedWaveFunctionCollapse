@@ -13,8 +13,9 @@ Other references are contained in the research paper.
 | ----------- | ----------- |
 | ![Picture1](https://github.com/cazzerty/GraphWeightedWaveFunctionCollapse/assets/61497672/e0b8cc86-1fc9-490e-816b-bd8aaa6609f0) | ![Picture2](https://github.com/cazzerty/GraphWeightedWaveFunctionCollapse/assets/61497672/7fd00898-33b2-4f5e-8806-852c1c0a427e) |
 
-**Further information about the project can be found in the submitted report**
+##Research Paper
+**Further information about the project can be found in the submitted paper**
 
 [GraphWeightedWaveFunctionCollapse.pdf](https://github.com/cazzerty/GraphWeightedWaveFunctionCollapse/files/14206100/GraphWeightedWaveFunctionCollapse.pdf)
 
-This project was a 2023 UTS Engineering Research Capstone
+_This project was a 2023 UTS Engineering Research Capstone_

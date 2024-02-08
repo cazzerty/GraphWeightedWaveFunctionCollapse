@@ -1,3 +1,4 @@
 # GraphWeightedWaveFunctionCollapse
  
-[ExploringTheUseOfGraphsToInfluenceProceduralGenerationWithWaveFunctionCollapse.pdf](https://github.com/cazzerty/GraphWeightedWaveFunctionCollapse/files/14206004/ExploringTheUseOfGraphsToInfluenceProceduralGenerationWithWaveFunctionCollapse.pdf)
+[GraphsWeightedWaveFunctionCollapse.pdf](https://github.com/cazzerty/GraphWeightedWaveFunctionCollapse/files/14206077/GraphsWeightedWaveFunctionCollapse.pdf)
+

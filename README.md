@@ -1,6 +1,13 @@
 # Graph-Weighted Wave Function Collapse
  
-This repository contains a Unity implementation of an experimental extension to the wave function collapse algorithm in which each cell collapse is impacted by proximity to a weighted graph. The goal of modifying the algorithm in such a way was to allow for greater control over map generation, such that a general structure could be guaranteed.
+This repository contains a Unity implementation of an experimental extension to the Wave Function Collapse algorithm in which each cell collapse is impacted by proximity to a weighted graph. The goal of modifying the algorithm in such a way was to allow for greater control over map generation, such that a general structure could be guaranteed.
+
+This implementation was made primarily for the process of seeing if the concept worked in any form, so it is lacking in several areas.
+
+For more info on base Wave Function Collapse, check out https://github.com/mxgmn/WaveFunctionCollapse.
+Other references are contained in the research paper.
+
+## Examples of output
 
 | Non Weighted | Exponentially Weighted |
 | ----------- | ----------- |

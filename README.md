@@ -7,9 +7,7 @@ The goal of modifying the algorithm was to allow for greater control over map ge
 This implementation was made primarily for the process of seeing if the concept worked in any form, so it is lacking in several areas.
 
 
-For more info on base Wave Function Collapse, check out https://github.com/mxgmn/WaveFunctionCollapse.
-
-Other references are contained in the research paper.
+For more info on base Wave Function Collapse, check out https://github.com/mxgmn/WaveFunctionCollapse. Other references are contained in the research paper.
 
 ## Examples of output
 
